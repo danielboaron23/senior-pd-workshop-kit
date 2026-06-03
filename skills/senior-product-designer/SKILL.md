@@ -107,12 +107,12 @@ This skill is heavier than a naive prompt by design — it loads context and del
 
 Every UI element you place passes through this gate, in order. Full detail and annotation rules in **`references/decision-protocol.md`**. When you reach **Extend** or **Invent**, drive the actual spec with the design-system skills — `designer-skills` → `design-systems/component-spec`, `design-token`, `theming-system`, `motion-system`, `naming-convention` — so the new/changed pattern is expressed in the product's own token and naming language, ready to adopt.
 
-1. **REUSE** — a suitable token/component already exists → use it *exactly* (correct variant, correct token). Do not re-implement what the DS already provides.
-2. **EXTEND** — close but not exact → extend a primitive *in the DS's own language* (a new variant/size/state), keeping naming and token conventions. Note it as an extension.
-3. **INVENT** — nothing fits, or the product genuinely needs something more innovative/delightful → design it, but:
-   - keep it **coherent** with the DS's visual language (its tokens, rhythm, motion),
-   - **flag it explicitly** as a new pattern,
-   - **propose it back** to the design system (a ready-to-adopt spec — see Design System Impact below).
+**Default posture: design FROM the design system. Inventing is a last resort, never silent.**
+
+1. **REUSE** — a suitable component already exists → use it *exactly* (correct variant, correct token). Don't re-implement what the DS provides.
+2. **COMPOSE** *(preferred before any new component)* — the exact component doesn't exist, but the need can be built from existing components + tokens (e.g. empty state = `card` + DS icon + text + `button`). No new component, no new token. This is how you "design from the DS without inventing."
+3. **EXTEND** — close but not exact → add a variant *in the DS's own language*, keeping naming/token conventions. Flag it.
+4. **INVENT** *(last resort)* — only when Reuse/Compose/Extend all fail. **Re-verify the DS first** (it's easy to miss `timeline`, `virtualTable`, `list`, etc.). Then **flag it and — unless told to proceed autonomously — ask before adding a new component.** Keep it coherent, and propose it back.
 
 If **no DS exists**, every primitive you create is an Invent that becomes the seed system — record each one.
 

@@ -2,15 +2,20 @@
 
 Run every UI element through this gate, in order. The point is never to silently leave the system: the designer must always know what's reused, what's stretched, and what's new.
 
-## Four categories — every element gets exactly one
-There is a fourth bucket beyond Reuse/Extend/Invent that is easy to miss and causes confusion:
+## Default posture: design FROM the design system. Inventing is a last resort.
+The strong default is to build everything from what the DS already provides. **Do not invent a new component to solve a problem that existing components can compose.** Inventing is allowed only when 1–3 below genuinely cannot cover the need — and even then it is **never silent**: flag it and, unless the designer told you to proceed autonomously, **surface it and ask before adding a new component.**
+
+## Five categories — every element gets exactly one
 
 | | Category | Meaning | Action |
 |---|---|---|---|
 | ♻️ | **REUSE** | exists in the DS, used as-is | none |
+| 🧩 | **COMPOSE** | a "missing" need built entirely from existing DS components + tokens (e.g. an empty state = Card + DS icon + text + Button). Still 100% in-system — **no new component** | prefer this over Extend/Invent |
 | ➕ | **EXTEND** | a DS component + a new variant/state | document it |
-| ✨ | **INVENT** | a genuinely new component | propose to add to the DS |
+| ✨ | **INVENT** | a genuinely new component — only when Reuse/Compose/Extend all fail | **flag + ask first**, then propose to add to the DS |
 | ⚠️ | **PLACEHOLDER** | an off-system stand-in used only because the mock can't render the real DS (e.g. an emoji where the DS has an icon component, lorem media, a raw `<input>` where `searchInput` exists) | **NOT a design decision** — must be replaced with the DS equivalent before build; list every one |
+
+**Before declaring EXTEND or INVENT, re-verify the DS.** Re-scan the component list and tokens for anything that already covers the need (it's easy to miss components like `timeline`, `virtualTable`, `list`, `expansionPanel`). Only after that search comes up empty do you move down the ladder.
 
 **Icons are the classic trap.** If the product has an icon system / `iconButton`, every glyph MUST map to a named DS icon. Emojis or ad-hoc SVGs in a mock are **PLACEHOLDER**, never Invent — name the intended DS icon for each.
 
@@ -25,14 +30,19 @@ A suitable token/component already exists in `DESIGN_CONTEXT.md`.
 → Use it exactly: correct component, correct variant/state, correct token. Do not re-implement.
 → No annotation needed.
 
-### 2. EXTEND
+### 2. COMPOSE  (preferred before any new component)
+The exact component doesn't exist, but the need can be built from existing DS components + tokens.
+→ Assemble it from primitives (e.g. empty state = `card` + DS icon + text + `button`; a stat row = `tag` + `tooltip`). No new component, no new token.
+→ **Annotate:** `COMPOSE <pattern> = <componentA> + <componentB> + …`. This keeps it 100% in-system.
+
+### 3. EXTEND
 Close, but the exact variant/size/state/token isn't there.
 → Add it **in the DS's own language** (same naming, same token scale, same motion).
 → Drive the spec with `designer-skills` → `design-systems/component-spec` + `design-token`.
 → **Annotate:** `EXTEND <component>: +<variant/prop/state> — <reason>`. Log it in the Decisions Log.
 
-### 3. INVENT
-Nothing fits, or the product genuinely needs something more innovative / delightful.
+### 4. INVENT  (last resort — flag and ask first)
+Only when Reuse, Compose, and Extend all genuinely fail. **Never invent silently.** Surface it explicitly and — unless the designer said to proceed autonomously — pause and ask before introducing a new component.
 → Design it, but it must stay **coherent** with the DS visual language (tokens, rhythm, motion).
 → Use `frontend-design` for the creative direction and `design-systems/component-spec` + `motion-system` to formalize it.
 → **Flag explicitly** as a new pattern, and **propose it back** (see Impact format below).
