@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Senior Product Designer Skill — איך הוא עובד וממה הוא מורכב</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap');
+  :root{
+    --bg:#0b1120; --panel:#0f172a; --card:#111c33; --line:#1e293b;
+    --ink:#e2e8f0; --muted:#94a3b8; --soft:#cbd5e1;
+    --blue:#38bdf8; --blue2:#0284c7; --good:#22c55e; --warn:#f59e0b; --bad:#ef4444; --purple:#a78bfa;
+    --radius:16px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Heebo',sans-serif;background:var(--bg);color:var(--ink);line-height:1.85;font-size:16px}
+  a{color:var(--blue);text-decoration:none}
+  .wrap{display:grid;grid-template-columns:280px 1fr;max-width:1280px;margin:0 auto}
+  nav.side{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;padding:28px 20px;border-left:1px solid var(--line);background:var(--panel)}
+  .brand{font-weight:900;font-size:18px;color:#fff}
+  .brand small{display:block;color:var(--blue);font-weight:600;font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-top:4px}
+  nav.side ol{list-style:none;margin-top:22px;counter-reset:s}
+  nav.side li{counter-increment:s;margin:2px 0}
+  nav.side a{display:block;padding:8px 12px;border-radius:10px;color:var(--soft);font-size:13.5px;font-weight:500}
+  nav.side a::before{content:counter(s);display:inline-flex;width:20px;height:20px;background:var(--card);border:1px solid var(--line);border-radius:6px;align-items:center;justify-content:center;font-size:11px;color:var(--blue);margin-left:8px;font-weight:700}
+  nav.side a:hover{background:var(--card);color:#fff}
+  main{padding:0 48px 120px}
+  .hero{padding:60px 0 38px;border-bottom:1px solid var(--line);margin-bottom:36px}
+  .badge{display:inline-block;background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.25);color:var(--blue);padding:6px 16px;border-radius:30px;font-size:12px;font-weight:600;letter-spacing:1px;margin-bottom:22px}
+  h1{font-size:40px;font-weight:900;color:#fff;line-height:1.2;letter-spacing:-.5px}
+  .hero p{color:var(--muted);font-size:18px;margin-top:16px;max-width:660px}
+  section{padding:34px 0;border-bottom:1px solid var(--line);scroll-margin-top:20px}
+  h2{font-size:27px;font-weight:800;color:#fff;display:flex;align-items:center;gap:14px;margin-bottom:8px}
+  h2 .n{flex-shrink:0;width:40px;height:40px;background:linear-gradient(135deg,var(--blue2),var(--blue));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff}
+  h3{font-size:19px;font-weight:700;color:#fff;margin:26px 0 8px}
+  h4{font-size:15px;font-weight:700;color:var(--blue);margin:18px 0 6px}
+  p{color:var(--soft);margin:10px 0}
+  .lead{color:var(--muted);font-size:17px;margin-bottom:6px}
+  ul,ol{margin:10px 26px;color:var(--soft)}
+  li{margin:6px 0}
+  strong{color:#fff;font-weight:700}
+  code{background:#0a1326;border:1px solid var(--line);border-radius:6px;padding:2px 7px;font-size:13.5px;color:#7dd3fc;font-family:ui-monospace,Menlo,Consolas,monospace;direction:ltr;display:inline-block}
+  pre{background:#070e1c;border:1px solid var(--line);border-radius:12px;padding:18px 20px;overflow-x:auto;margin:14px 0;direction:ltr;text-align:left}
+  pre code{background:none;border:none;padding:0;color:#cbe7ff;font-size:13px;line-height:1.85;display:block}
+  .cmt{color:#5b7089}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:18px 0}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+  .card h4{margin-top:0}
+  .call{border-radius:12px;padding:16px 18px;margin:16px 0;border:1px solid;display:flex;gap:12px;align-items:flex-start}
+  .call .ico{font-size:20px;flex-shrink:0}
+  .call p{margin:0;color:var(--soft)}
+  .tip{background:rgba(34,197,94,.07);border-color:rgba(34,197,94,.3)}
+  .info{background:rgba(56,189,248,.07);border-color:rgba(56,189,248,.3)}
+  .warn{background:rgba(245,158,11,.08);border-color:rgba(245,158,11,.35)}
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px}
+  th,td{text-align:right;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--blue);font-weight:700;font-size:13px;background:var(--panel)}
+  td{color:var(--soft)}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;margin:14px 0;position:relative}
+  .step .tag{position:absolute;top:-12px;right:22px;background:linear-gradient(135deg,var(--blue2),var(--blue));color:#fff;font-size:12px;font-weight:700;padding:4px 14px;border-radius:20px}
+  .step h3{margin-top:6px}
+  .pill{display:inline-block;background:#0a1326;border:1px solid var(--line);color:var(--blue);border-radius:6px;padding:2px 9px;font-size:12px;margin:2px}
+  .flow{display:flex;align-items:stretch;gap:8px;margin:18px 0;flex-wrap:wrap}
+  .flow .fstep{flex:1;min-width:120px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center}
+  .flow .fstep .ft{font-size:12px;color:var(--blue);font-weight:700;margin-bottom:4px}
+  .flow .fstep .fd{font-size:12px;color:var(--muted)}
+  .flow .arr{display:flex;align-items:center;color:var(--blue);font-size:22px;font-weight:700}
+  .anat{border-right:3px solid var(--blue2);padding-right:16px;margin:14px 0}
+  .anat .k{color:#fff;font-weight:700}
+  .foot{padding:40px 0 0;color:var(--muted);font-size:13px;text-align:center}
+  @media(max-width:900px){.wrap{grid-template-columns:1fr}nav.side{display:none}main{padding:0 22px 80px}h1{font-size:30px}.grid,.grid3,.flow{grid-template-columns:1fr;flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav class="side">
+  <div class="brand">Senior Product Designer<small>How it works · what's inside</small></div>
+  <ol>
+    <li><a href="#intro">מה זה ולמה</a></li>
+    <li><a href="#concept">הרעיון: מנצח, לא נגן</a></li>
+    <li><a href="#built">איך בניתי אותו</a></li>
+    <li><a href="#anatomy">ממה הוא מורכב (מבנה)</a></li>
+    <li><a href="#pipeline">איך הוא עובד (Pipeline)</a></li>
+    <li><a href="#layers">3 השכבות בפירוט</a></li>
+    <li><a href="#whyctx">למה צריך DESIGN_CONTEXT</a></li>
+    <li><a href="#delegation">מפת ה-Delegation</a></li>
+    <li><a href="#cost">עלות וקאשינג</a></li>
+    <li><a href="#install">מה צריך להתקין</a></li>
+    <li><a href="#use">איך משתמשים</a></li>
+    <li><a href="#glossary">מילון מונחים</a></li>
+  </ol>
+</nav>
+
+<main>
+  <div class="hero" id="top">
+    <span class="badge">AI — THE NEXT CHAPTER IN DESIGN</span>
+    <h1>הסקיל "מעצב מוצר סניור" — איך הוא עובד וממה הוא מורכב</h1>
+    <p>המדריך הזה לא רק אומר מה הסקיל עושה — הוא פותח אותו מבפנים: כל קובץ, כל שכבה, כל החלטה, ולמה בניתי אותו ככה. בדיוק מה שצריך כדי להביא אותו לחברה ולהסביר אותו לעומק.</p>
+  </div>
+
+  <!-- 1 -->
+  <section id="intro">
+    <h2><span class="n">1</span> מה זה ולמה</h2>
+    <p class="lead">הסקיל <code>senior-product-designer</code> גורם לקלוד להפסיק לעצב "משהו יפה גנרי" ולהתחיל לעבוד כמו מעצב מוצר סניור: קודם הוא לומד את המוצר הספציפי, ורק אז מעצב — בתוך ההקשר שלו.</p>
+    <p>אתה מביא אותו לחברה <strong>מוכן</strong>, ומסביר להם איך הוא בנוי ואיך הוא עובד. המדריך הזה הוא בדיוק חומר הגלם להסבר הזה.</p>
+  </section>
+
+  <!-- 2 -->
+  <section id="concept">
+    <h2><span class="n">2</span> הרעיון המרכזי: מנצח תזמורת, לא נגן בודד</h2>
+    <p class="lead">רוב סקילי העיצוב הם "נגן בודד" — הם יודעים לעשות דבר אחד (למשל לעצב landing יפה). הסקיל שלנו הוא <strong>מנצח</strong>: הוא לא מנגן הכל לבד, הוא <strong>מנהל סקילים אחרים</strong> ומפעיל כל אחד בזמן הנכון.</p>
+    <div class="call tip"><span class="ico">💡</span><p><strong>המשפט שמסכם הכל:</strong> "המסגרת אוניברסלית — ההקשר שהיא לומדת הוא מה שהופך אותה אישית לכל מוצר." אותו סקיל בדיוק, כל חברה.</p></div>
+    <p>הערך הייחודי שלו (מה ש<em>רק הוא</em> עושה) הוא 3 דברים: <strong>(1)</strong> לומד את המוצר, <strong>(2)</strong> מחליט נכון לגבי מערכת העיצוב, <strong>(3)</strong> מעצב בכיסוי מלא של סניור. את שאר ה"מלאכה" הוא מאציל לסקילים מומחים.</p>
+  </section>
+
+  <!-- 3 -->
+  <section id="built">
+    <h2><span class="n">3</span> איך בניתי אותו (ההיגיון מאחורי כל החלטה)</h2>
+    <p class="lead">כל חלק בסקיל נולד מפתרון לכישלון אמיתי. זה הסיפור שכדאי לספר להם:</p>
+    <div class="step"><span class="tag">הבעיה</span><h3>AI מעצב "ג׳וניור"</h3><p>סקילים כמו frontend-design מייצרים מסך יפה — אבל <strong>עיוורים להקשר</strong>: לא מכירים את מערכת העיצוב, את הקהל, את האילוצים. יפה אבל שטחי.</p></div>
+    <div class="step"><span class="tag">התובנה</span><h3>סניור לומד את המוצר קודם</h3><p>מעצב סניור לא מתחיל לעצב — הוא קודם סופג את המציאות של המוצר. מכאן נולדה <strong>שכבה 1</strong>: למידה אוטומטית של המוצר לפני הכל.</p></div>
+    <div class="step"><span class="tag">ההחלטה</span><h3>מנצח, לא שכפול</h3><p>אין טעם לכתוב מחדש 99 כללי UX או מנוע טעם — הם כבר קיימים. אז בניתי אותו כ<strong>מנצח</strong> שמאציל ל-ui-ux-pro-max, frontend-design ו-design-systems. זה גם מה שהופך אותו לקליל לתחזוקה.</p></div>
+    <div class="step"><span class="tag">הסניוריות</span><h3>לא רק המסך היפה</h3><p>הוספתי <strong>שכבה 3</strong> — כיסוי מלא: כל המצבים, הזרימה, נגישות, וה-delight. זה ההבדל בין "מסך" ל"פיצ׳ר שלם".</p></div>
+    <div class="step"><span class="tag">העלות</span><h3>קאשינג</h3><p>הסריקה יקרה — אז הוספתי כלל שמריץ אותה <strong>פעם אחת לכל מוצר</strong> ושומר ל-<code>DESIGN_CONTEXT.md</code>. ראה סקשן עלות.</p></div>
+  </section>
+
+  <!-- 4 -->
+  <section id="anatomy">
+    <h2><span class="n">4</span> ממה הוא מורכב — מבנה הקבצים מבפנים</h2>
+    <p class="lead">הסקיל הוא תיקייה אחת עם קובץ ראשי + 3 קבצי עזר. כך בדיוק:</p>
+    <pre><code>senior-product-designer/
+├── SKILL.md                       <span class="cmt"># המוח — נטען כשהסקיל מופעל</span>
+└── references/                    <span class="cmt"># נטענים רק כשצריך אותם (חיסכון)</span>
+    ├── design-context-template.md <span class="cmt"># המבנה של DESIGN_CONTEXT.md</span>
+    ├── decision-protocol.md        <span class="cmt"># שער ההחלטה Use→Extend→Invent</span>
+    └── quality-checklists.md       <span class="cmt"># צ׳קליסט הכיסוי הסניורי</span></code></pre>
+
+    <h3>מה יש בתוך <code>SKILL.md</code> (החלקים, לפי הסדר)</h3>
+    <div class="anat"><span class="k">Frontmatter</span> — שם הסקיל + תיאור עם מילות-טריגר (design, senior product designer, state, flow, audit…). זה מה שגורם לו להיטען אוטומטית.</div>
+    <div class="anat"><span class="k">עקרון העבודה</span> — "המסגרת אוניברסלית, ההקשר אישי". סדר ריצה קבוע: שכבה 1 → 2 → 3.</div>
+    <div class="anat"><span class="k">This skill is a CONDUCTOR</span> — מפת ה-delegation: איזה סקיל מפעילים, מתי, ולמה.</div>
+    <div class="anat"><span class="k">Cost & model selection</span> — איך לשמור שזה זול, ואיזה מודל לכל סוג משימה.</div>
+    <div class="anat"><span class="k">Layer 1 — Product Context</span> — מה לסרוק (קוד + Figma), כלל ה-caching, וכתיבת DESIGN_CONTEXT.md.</div>
+    <div class="anat"><span class="k">Layer 2 — Use→Extend→Invent</span> — שער ההחלטה לכל אלמנט.</div>
+    <div class="anat"><span class="k">Layer 3 — Senior Execution</span> — כיסוי מלא: מצבים, זרימה, נגישות, delight.</div>
+    <div class="anat"><span class="k">Output (Adaptive)</span> — קוד אם יש repo, או spec+מוקאפ אם Figma. תמיד עם דוח Design System Impact.</div>
+    <div class="anat"><span class="k">Taste guardrails</span> — אנטי-גנרי, אבל ההקשר תמיד גובר על הטעם.</div>
+    <div class="anat"><span class="k">Pre-flight</span> — צ׳קליסט שהסקיל מריץ על עצמו לפני שהוא מוסר תוצר.</div>
+
+    <h3>שלושת קבצי ה-references — מה כל אחד מכיל</h3>
+    <div class="grid3">
+      <div class="card"><h4>design-context-template.md</h4><p>הסכמה של "תעודת הזהות" של המוצר: מוצר, מערכת עיצוב (טוקנים, קומפוננטות), קונבנציות, אילוצים, כיוון אסתטי, פערים, ולוג החלטות. + רשימת "איפה לחפש" בקוד/Figma.</p></div>
+      <div class="card"><h4>decision-protocol.md</h4><p>הפירוט המלא של Use→Extend→Invent, מתי להרחיב מול להמציא, והתבנית של דוח <strong>Design System Impact</strong> ("מה להוסיף למערכת").</p></div>
+      <div class="card"><h4>quality-checklists.md</h4><p>צ׳קליסט הכיסוי: כל המצבים, הזרימה, ה-backbone של הנכונות, קופי, delight, handoff, ומצב audit — כשכל פריט מצביע על הסקיל שמטפל בו.</p></div>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section id="pipeline">
+    <h2><span class="n">5</span> איך הוא עובד — ה-Pipeline המלא</h2>
+    <p class="lead">מרגע שמשתתף מבקש לעצב משהו, זה מה שקורה מאחורי הקלעים:</p>
+    <div class="flow">
+      <div class="fstep"><div class="ft">בקשה</div><div class="fd">"עצב את מסך X"</div></div>
+      <div class="arr">←</div>
+      <div class="fstep"><div class="ft">שכבה 1</div><div class="fd">טוען/כותב DESIGN_CONTEXT.md</div></div>
+      <div class="arr">←</div>
+      <div class="fstep"><div class="ft">שכבה 2</div><div class="fd">Use→Extend→Invent לכל אלמנט</div></div>
+      <div class="arr">←</div>
+      <div class="fstep"><div class="ft">שכבה 3</div><div class="fd">כיסוי סניורי + delegation</div></div>
+      <div class="arr">←</div>
+      <div class="fstep"><div class="ft">פלט</div><div class="fd">קוד/spec + Design System Impact</div></div>
+    </div>
+    <div class="call info"><span class="ico">ℹ️</span><p>ב-<strong>ריצה הראשונה</strong> שכבה 1 סורקת את כל המוצר (כבד). מהריצה השנייה היא רק קוראת את <code>DESIGN_CONTEXT.md</code> (קליל). זה ה-pipeline שחוסך כסף.</p></div>
+  </section>
+
+  <!-- 6 -->
+  <section id="layers">
+    <h2><span class="n">6</span> שלוש השכבות — בפירוט</h2>
+
+    <div class="step"><span class="tag">שכבה 1</span><h3>מכיר את המוצר (אוטומטי, תמיד ראשון)</h3>
+      <p>סורק לבד ומחפש את מערכת העיצוב:</p>
+      <ul>
+        <li><strong>מקוד:</strong> <code>tailwind.config</code>, משתני CSS, <code>tokens.ts</code>, <code>components/ui</code> (shadcn), Storybook, ספריות UI ב-package.json.</li>
+        <li><strong>מ-Figma:</strong> טוקנים, קומפוננטות וקונבנציות דרך ה-MCP.</li>
+      </ul>
+      <p>כותב <code>DESIGN_CONTEXT.md</code> ומכריז ב-שורה אחת מה זיהה ("Context Read"). אם אין מערכת עיצוב → "מצב בנייה" שמתחיל לבנות אחת קטנה.</p>
+    </div>
+
+    <div class="step"><span class="tag">שכבה 2</span><h3>שער ההחלטה: השתמש ← הרחב ← המצא</h3>
+      <ol>
+        <li><span class="pill">Reuse</span> יש קומפוננטה? → תשתמש בה בדיוק.</li>
+        <li><span class="pill">Extend</span> כמעט מתאים? → הרחב בשפה של המערכת, וסמן.</li>
+        <li><span class="pill">Invent</span> אין/צריך חדשני? → תעצב חדש, שמור על קוהרנטיות, <strong>סמן בבירור</strong>, ו<strong>הצע להוסיף למערכת</strong>.</li>
+      </ol>
+      <div class="call tip"><span class="ico">💡</span><p>זה בדיוק מה שביקשת: יודע להשתמש במערכת העיצוב — ואם צריך משהו מיוחד שלא קיים, <strong>מעדכן ואומר להם</strong> מה להוסיף.</p></div>
+    </div>
+
+    <div class="step"><span class="tag">שכבה 3</span><h3>מעצב כמו סניור (לא רק המסך היפה)</h3>
+      <ul>
+        <li><strong>כל המצבים:</strong> רגיל, ריק, טעינה, שגיאה, הצלחה, אין-הרשאה.</li>
+        <li><strong>הזרימה כולה:</strong> כניסה → שלבים → מקרי קצה → יציאה.</li>
+        <li><strong>נגישות, רספונסיביות, טקסט אמיתי</strong> (לא Lorem).</li>
+        <li><strong>שכבת delight</strong> שמשרתת את המוצר.</li>
+        <li><strong>דוח Design System Impact:</strong> מה שוכפל / הורחב / הומצא.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section id="whyctx">
+    <h2><span class="n">7</span> למה צריך DESIGN_CONTEXT אם כבר יש Design System?</h2>
+    <p class="lead">השאלה הכי טובה ששואלים על הסקיל. התשובה: הם לא מתחרים — הם משלימים.</p>
+
+    <h3>הדימוי: עובד חדש ביום הראשון</h3>
+    <p>תאר לך <strong>מעצב סניור מצוין</strong> שמתחיל בחברה. נותנים לו את ה-design system המלא (כפתורים, צבעים, קומפוננטות). <strong>האם הוא מעצב מצוין כבר ביום הראשון?</strong> לא — כי ה-DS נתן לו את ה<strong>כלים</strong>, אבל לא את ה<strong>ידע על המוצר הזה</strong>. הוא עוד צריך ללמוד: מי המשתמשים, מה ה-voice, מה הכללים, מה חסר, ולמה החלטות עבר נעשו ככה.</p>
+    <div class="call tip"><span class="ico">💡</span><p><strong>ה-Design System = ארגז הכלים. DESIGN_CONTEXT = הראש של הסניור שיודע איך להשתמש בכלים <em>פה</em>.</strong> עם ארגז כלים בלבד מעצבים כמו ג׳וניור; עם הידע על המוצר — כמו סניור.</p></div>
+
+    <h3>דוגמה קונקרטית: "עצב empty state למסך הדוחות"</h3>
+    <table>
+      <tr><th>ה-Design System בקוד <span style="color:var(--good)">יודע</span></th><th>הוא <span style="color:var(--warn)">לא יודע</span> — וזה ב-DESIGN_CONTEXT</th></tr>
+      <tr><td>יש קומפוננטת <code>Button</code>, <code>Card</code></td><td>מי משתמש בדוחות ובאיזה טון לדבר אליו</td></tr>
+      <tr><td>הצבע הראשי, המרווחים, הרדיוס</td><td>האם <code>empty state</code> הוא בכלל pattern שקיים (פער!)</td></tr>
+      <tr><td>הטיפוגרפיה המוגדרת</td><td>שהמוצר חייב נגישות WCAG AA</td></tr>
+      <tr><td>וריאנטים של קומפוננטות</td><td>ה-voice של הקופי ("אין דוחות" מול "בוא ניצור דוח ראשון")</td></tr>
+      <tr><td>—</td><td>מה הוחלט בפעם שעברה כשהמצאנו משהו שלא קיים</td></tr>
+    </table>
+    <p>בלי <code>DESIGN_CONTEXT</code>, בכל בקשה קלוד <strong>או</strong> מנחש את כל זה (פלט גנרי) <strong>או</strong> סורק הכל מחדש (יקר ואיטי). איתו — הוא כבר "מכיר את המוצר".</p>
+
+    <h3>ובכנות — מתי הוא דק יותר?</h3>
+    <p>אם יש DS מעולה + תיעוד עשיר שכבר כולל קהל/voice/אילוצים, החלק של "מה קיים" יהיה <strong>דק מאוד</strong> (רק מצביעים). גם אז הוא תורם: <strong>(1) חיסכון</strong> — אינדקס קטן במקום סריקה מלאה בכל פעם; <strong>(2) שכבת שיפוט</strong> — רוב ה-DS מתעדים קומפוננטות, לא שיקול-דעת מוצרי (מתי להרחיב, מה חסר, למי מעצבים).</p>
+
+    <div class="call info"><span class="ico">ℹ️</span><p><strong>פעם אחת בלבד:</strong> ברגע שהסקיל עבר על הקוד וכתב את <code>DESIGN_CONTEXT.md</code> — <strong>הוא לא עובר שוב.</strong> מהריצה הבאה הוא רק קורא את הקובץ הקטן. סריקה מחדש קורית רק אם אומרים לו שהמוצר/המערכת השתנו.</p></div>
+  </section>
+
+  <!-- 8 -->
+  <section id="delegation">
+    <h2><span class="n">8</span> מפת ה-Delegation — את מי הוא מנצח</h2>
+    <p class="lead">זה ה"ממה הוא מורכב" האמיתי: הסקיל מפעיל את הסקילים הבאים בזמן הנכון, וכל אחד מקבל את ההקשר של המוצר.</p>
+    <table>
+      <tr><th>תפקיד ב-pipeline</th><th>הסקיל שמופעל</th><th>מתי</th></tr>
+      <tr><td>נכונות — נגישות, layout, טיפוגרפיה, מצבים, צ׳ארטים</td><td><code>ui-ux-pro-max</code></td><td>שכבה 3, כל מסך</td></tr>
+      <tr><td>טעם / delight / אנטי-גנרי</td><td><code>frontend-design</code></td><td>שכבה 3, בעת ייצור ה-UI</td></tr>
+      <tr><td>מצבים, זרימות, מיקרו-אינטראקציות</td><td><code>interaction-design</code></td><td>שכבה 3, מצבים/delight</td></tr>
+      <tr><td>טוקנים, מפרטי קומפוננטות, theming, governance</td><td><code>design-systems</code></td><td>שכבה 2, Extend/Invent</td></tr>
+      <tr><td>ביקורת / אודיט</td><td><code>visual-critique</code></td><td>בקשות audit</td></tr>
+      <tr><td>קונבנציות פלטפורמה (native)</td><td><code>platform-design-*</code></td><td>כשרלוונטי</td></tr>
+    </table>
+    <div class="call warn"><span class="ico">⚠️</span><p>אם סקיל מסוים לא מותקן — הסקיל <strong>לא נשבר</strong>: הוא עושה את השלב לבד מתוך ה-checklist, ואומר איזה סקיל היה מחזק אותו.</p></div>
+  </section>
+
+  <!-- 8 -->
+  <section id="cost">
+    <h2><span class="n">9</span> עלות וקאשינג — כמה זה עולה להפעיל</h2>
+    <p class="lead">בכנות: הסקיל כבד יותר מפרומפט נאיבי — אבל העלות ממוקדת (front-loaded) וניתנת להוזלה.</p>
+    <div class="grid">
+      <div class="card"><h4>✅ מה כמעט לא עולה</h4><p>להחזיק את הסקיל מותקן (רק שם+תיאור ברקע). קבצי ה-references נטענים רק כשצריך.</p></div>
+      <div class="card"><h4>🔴 מה כן עולה</h4><p>הסריקה בשכבה 1 (פעם אחת למוצר), טעינת הסקילים המנוצחים, והפלט המלא של כל המצבים.</p></div>
+    </div>
+    <h3>החוסך הגדול — מובנה בסקיל</h3>
+    <ul>
+      <li>שכבה 1 רצה כבד <strong>רק בפעם הראשונה</strong>, כותבת <code>DESIGN_CONTEXT.md</code>, ומהריצה השנייה רק קוראת קובץ קטן (~1–2K טוקנים).</li>
+      <li>הסקיל מורה במפורש <strong>לשמור ולעשות commit</strong> ל-<code>DESIGN_CONTEXT.md</code> — כך זה נשמר לתמיד.</li>
+      <li><strong>Prompt caching</strong> מוזיל ריצות חוזרות באותו session.</li>
+    </ul>
+    <h3>טיפים לשמירה על עלות נמוכה</h3>
+    <ul>
+      <li>תחם את הבקשה: "כפתור" &lt;&lt; "כל הפלואו".</li>
+      <li>מודל לפי משימה: Sonnet/Haiku לקומפוננטה/אודיט, Opus לפלואו מלא ועבודת Invent.</li>
+    </ul>
+    <div class="call info"><span class="ico">ℹ️</span><p>על <strong>Claude Pro/Max</strong> אין תשלום per-token — אתה מוגבל ב-usage limits, אז "יקר" = מתקרב מהר יותר לתקרה. רק ב-<strong>API</strong> משלמים לפי טוקנים, ושם הסריקה הראשונה היא ההוצאה היחידה ששווה לשים לב אליה.</p></div>
+  </section>
+
+  <!-- 9 -->
+  <section id="install">
+    <h2><span class="n">10</span> מה צריך שיהיה להם לפני (התקנה)</h2>
+    <p class="lead">"שיעורי בית" שכל משתתף עושה לפני הסדנה. נותן להם את תיקיית ה-kit ופקודה אחת:</p>
+    <pre><code>bash setup.sh</code></pre>
+    <p>הסקריפט בודק Node/Git, מתקין Claude Code אם חסר, מוסיף שני marketplaces, מתקין את כל הסקילים, ומעתיק את המנצח למקום.</p>
+    <h4>דרישות בסיס</h4>
+    <ul>
+      <li>חשבון <strong>Claude</strong> (Pro/Max) · <strong>Node.js 18+</strong> · <strong>Git</strong> · <strong>Claude Code CLI</strong></li>
+      <li>המוצר שלהם: <strong>repo</strong> משוכפל מקומית — או קובץ <strong>Figma</strong> (+ Figma MCP במסלול Figma)</li>
+    </ul>
+    <div class="call warn"><span class="ico">⚠️</span><p>אחרי ההתקנה — <strong>לסגור ולפתוח מחדש את Claude Code</strong> כדי שהסקילים ייטענו.</p></div>
+  </section>
+
+  <!-- 10 -->
+  <section id="use">
+    <h2><span class="n">11</span> איך משתמשים בו בפועל</h2>
+    <p class="lead">לא מפעילים ידנית — הוא קם לבד מהבקשה. פותחים Claude Code בתוך תיקיית המוצר ומדברים בשפה רגילה:</p>
+    <pre><code>cd ~/the-product-repo
+claude</code></pre>
+    <h4>דוגמאות פרומפט</h4>
+    <ul>
+      <li>"עצב את מסך ה-Settings כמו מעצב מוצר סניור"</li>
+      <li>"design the empty state for the dashboard as a senior product designer"</li>
+      <li>"בנה את מסך ה-onboarding, כל המצבים, בתוך מערכת העיצוב שלנו"</li>
+      <li>"audit the billing screen as a senior designer"</li>
+    </ul>
+    <p>ריצה ראשונה → כותב <code>DESIGN_CONTEXT.md</code> (בודקים ומתקנים). מכאן הוא כבר "מכיר" את המוצר, וכל בקשה מקבלת פלט מותאם + דוח Design System Impact.</p>
+  </section>
+
+  <!-- 11 -->
+  <section id="glossary">
+    <h2><span class="n">12</span> מילון מונחים</h2>
+    <table>
+      <tr><th>מונח</th><th>בפשטות</th></tr>
+      <tr><td><strong>Skill</strong></td><td>קובץ הוראות שמלמד את קלוד איך לחשוב על משימה. טקסט, לא תוכנה.</td></tr>
+      <tr><td><strong>Conductor (מנצח)</strong></td><td>סקיל שמפעיל סקילים אחרים בזמן הנכון, במקום לעשות הכל לבד.</td></tr>
+      <tr><td><strong>Delegation</strong></td><td>האצלה — הסקיל "מעביר" משימת-משנה לסקיל מומחה.</td></tr>
+      <tr><td><strong>Plugin / Marketplace</strong></td><td>חבילת סקילים / "חנות" שממנה מתקינים אותם.</td></tr>
+      <tr><td><strong>Claude Code / CLI</strong></td><td>הכלי של קלוד בטרמינל (שורת פקודה).</td></tr>
+      <tr><td><strong>MCP</strong></td><td>גשר שמחבר את קלוד לכלים חיצוניים (Figma, GitHub).</td></tr>
+      <tr><td><strong>Design System</strong></td><td>אוסף הצבעים, הפונטים, המרווחים והקומפוננטות הקבועים של מוצר.</td></tr>
+      <tr><td><strong>Tokens</strong></td><td>הערכים הבסיסיים של מערכת העיצוב כמשתנים (צבע ראשי, מרווח, רדיוס).</td></tr>
+      <tr><td><strong>DESIGN_CONTEXT.md</strong></td><td>"תעודת הזהות" של המוצר שהסקיל כותב וקורא — הלב של החיסכון וההתאמה.</td></tr>
+      <tr><td><strong>States</strong></td><td>כל המצבים של מסך: רגיל, ריק, טעינה, שגיאה, הצלחה.</td></tr>
+      <tr><td><strong>Design System Impact</strong></td><td>הדוח בסוף: מה שוכפל, מה הורחב, ומה הומצא וצריך להוסיף למערכת.</td></tr>
+      <tr><td><strong>Prompt caching</strong></td><td>מנגנון שמוזיל ריצות חוזרות באותו session.</td></tr>
+    </table>
+  </section>
+
+  <div class="foot">DesignAI · senior-product-designer · designai.co.il</div>
+</main>
+</div>
+</body>
+</html>
