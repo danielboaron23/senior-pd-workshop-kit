@@ -2,8 +2,19 @@
 
 Run every UI element through this gate, in order. The point is never to silently leave the system: the designer must always know what's reused, what's stretched, and what's new.
 
-## Default posture: design FROM the design system. Inventing is a last resort.
+## Default posture: design FROM the design system — but adapt the strength to the context.
 The strong default is to build everything from what the DS already provides. **Do not invent a new component to solve a problem that existing components can compose.** Inventing is allowed only when 1–3 below genuinely cannot cover the need — and even then it is **never silent**: flag it and, unless the designer told you to proceed autonomously, **surface it and ask before adding a new component.**
+
+But "always reuse, never invent" is itself a junior rule. A senior reuses ~90% of the time *and* knows the ~10% where stepping outside is correct. **Calibrate the strength of REUSE-first to the situation** (read `DS status` from `DESIGN_CONTEXT.md` first):
+
+| Situation | Posture |
+|---|---|
+| **DS = CONNECTED** (mature) | Hard REUSE-first. Invent is a true last resort — ask first. |
+| **DS = PARTIAL** | Reuse what exists; **Extend generously** in-language to fill gaps. |
+| **DS = NONE** (early-stage) | **Invent freely — it IS the work.** Each primitive seeds the bootstrap system. |
+| **Request says "be bold / signature / memorable"** | **Deliberate Invent is valid even with a mature DS** — novelty is the point. Stay brand-coherent; still flag + propose back. |
+
+The three legitimate reasons to invent even when a DS exists: (1) no DS yet → must bootstrap; (2) the DS needs to grow → the new pattern, flagged and proposed back, is *how systems evolve*; (3) the feature's intent is to be novel (hero/landing/signature moment). Inventing for any other reason is the junior trap this protocol exists to prevent.
 
 ## Five categories — every element gets exactly one
 

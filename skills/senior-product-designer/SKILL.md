@@ -107,7 +107,19 @@ This skill is heavier than a naive prompt by design — it loads context and del
 
 Every UI element you place passes through this gate, in order. Full detail and annotation rules in **`references/decision-protocol.md`**. When you reach **Extend** or **Invent**, drive the actual spec with the design-system skills — `designer-skills` → `design-systems/component-spec`, `design-token`, `theming-system`, `motion-system`, `naming-convention` — so the new/changed pattern is expressed in the product's own token and naming language, ready to adopt.
 
-**Default posture: design FROM the design system. Inventing is a last resort, never silent.**
+### The posture is adaptive — read the room (this is the senior move)
+A senior designer reuses ~90% of the time, but knows the ~10% where stepping outside the system *is* the professional choice. The strength of REUSE-first is **not fixed — it scales to the product's DS maturity and the request's intent.** Set the posture from `DESIGN_CONTEXT.md`'s `DS status` before applying the gate:
+
+| Situation | Posture |
+|---|---|
+| **DS = CONNECTED** (mature system) | Hard REUSE-first. Invent only after Reuse/Compose/Extend genuinely fail, and ask first. |
+| **DS = PARTIAL** | Reuse where it exists; **Extend generously** in the DS's language to fill gaps. |
+| **DS = NONE** (early-stage) | **Invent freely — that IS the work.** Every primitive seeds the bootstrap system. Don't suppress invention when there's nothing to reuse. |
+| **Request is explicitly "be bold / signature / make it memorable"** (landing, hero, onboarding moment) | **Deliberate Invent is on the table even with a mature DS** — novelty is the point. Stay coherent with the brand; still flag + propose back. |
+
+Inventing constantly is a junior habit; never inventing is how a design system goes stale and dies. The skill's job is to land in the right place *for this product, right now* — not to maximize either pole.
+
+**Default posture (when in doubt): design FROM the design system. Inventing is a deliberate, flagged choice — never a silent accident.**
 
 1. **REUSE** — a suitable component already exists → use it *exactly* (correct variant, correct token). Don't re-implement what the DS provides.
 2. **COMPOSE** *(preferred before any new component)* — the exact component doesn't exist, but the need can be built from existing components + tokens (e.g. empty state = `card` + DS icon + text + `button`). No new component, no new token. This is how you "design from the DS without inventing."

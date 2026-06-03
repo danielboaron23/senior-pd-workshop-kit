@@ -189,13 +189,25 @@
       <p>כותב <code>DESIGN_CONTEXT.md</code> ומכריז ב-שורה אחת מה זיהה ("Context Read"). אם אין מערכת עיצוב → "מצב בנייה" שמתחיל לבנות אחת קטנה.</p>
     </div>
 
-    <div class="step"><span class="tag">שכבה 2</span><h3>שער ההחלטה: השתמש ← הרחב ← המצא</h3>
+    <div class="step"><span class="tag">שכבה 2</span><h3>שער ההחלטה: השתמש ← הרכב ← הרחב ← המצא</h3>
+      <p>כל אלמנט בעיצוב עובר דרך סולם של 4 דרגות, לפי הסדר. ברירת המחדל היא להישאר בתוך המערכת — וכל ירידה במדרגה היא <strong>החלטה מודעת ומסומנת</strong>, אף פעם לא בשקט.</p>
       <ol>
-        <li><span class="pill">Reuse</span> יש קומפוננטה? → תשתמש בה בדיוק.</li>
-        <li><span class="pill">Extend</span> כמעט מתאים? → הרחב בשפה של המערכת, וסמן.</li>
-        <li><span class="pill">Invent</span> אין/צריך חדשני? → תעצב חדש, שמור על קוהרנטיות, <strong>סמן בבירור</strong>, ו<strong>הצע להוסיף למערכת</strong>.</li>
+        <li><span class="pill">♻️ Reuse</span> יש קומפוננטה? → תשתמש בה בדיוק (וריאנט נכון, טוקן נכון).</li>
+        <li><span class="pill">🧩 Compose</span> אין קומפוננטה אבל אפשר להרכיב מהקיים? → הרכב מ-primitives (למשל empty state = Card + אייקון + טקסט + Button). עדיין 100% בתוך המערכת.</li>
+        <li><span class="pill">➕ Extend</span> כמעט מתאים? → הוסף וריאנט בשפה של המערכת, וסמן.</li>
+        <li><span class="pill">✨ Invent</span> הכל נכשל / צריך חדשני? → תעצב חדש, שמור על קוהרנטיות, <strong>סמן בבירור</strong>, ו<strong>הצע להוסיף למערכת</strong>.</li>
       </ol>
-      <div class="call tip"><span class="ico">💡</span><p>זה בדיוק מה שביקשת: יודע להשתמש במערכת העיצוב — ואם צריך משהו מיוחד שלא קיים, <strong>מעדכן ואומר להם</strong> מה להוסיף.</p></div>
+
+      <h4 style="margin-top:22px">העיקרון הסניורי: הפוסטורה אדפטיבית — "קורא את החדר"</h4>
+      <p>מעצב סניור משתמש במערכת העיצוב בערך <strong>90% מהזמן</strong> — אבל יודע לזהות את ה-10% שבהם לחרוג זו דווקא ההחלטה המקצועית. לכן עוצמת ה"reuse-first" <strong>לא קבועה</strong> — היא משתנה לפי בגרות מערכת העיצוב וכוונת הבקשה:</p>
+      <table>
+        <tr><th>מצב המוצר</th><th>הפוסטורה של הסקיל</th></tr>
+        <tr><td><strong>DS בוגר</strong> (CONNECTED)</td><td>reuse-first קשיח. המצאה רק כשהכל נכשל — ושואל קודם.</td></tr>
+        <tr><td><strong>DS חלקי</strong> (PARTIAL)</td><td>משתמש בקיים; <strong>מרחיב בנדיבות</strong> בשפת המערכת כדי לסגור פערים.</td></tr>
+        <tr><td><strong>אין DS</strong> (NONE — סטארטאפ מוקדם)</td><td><strong>ממציא בחופשיות — זו העבודה.</strong> כל primitive בונה את המערכת מאפס.</td></tr>
+        <tr><td><strong>הבקשה: "תהיה חדשני / signature"</strong> (landing, hero, אונבורדינג)</td><td><strong>המצאה מכוונת לגיטימית גם עם DS בוגר</strong> — החדשנות היא המטרה. נשאר נאמן למותג, עדיין מסמן.</td></tr>
+      </table>
+      <div class="call tip"><span class="ico">💡</span><p><strong>זה מה שמבדיל אותו מ-AI גנרי:</strong> AI רגיל ממציא בלי לדעת שהוא ממציא. הסקיל ממציא רק כשהמוצר מצדיק את זה — <strong>מסמן, שואל לפני, ומציע להוסיף חזרה</strong> למערכת. להמציא כל הזמן זו טעות ג׳וניור; אף פעם לא להמציא — ככה מערכת עיצוב קופאת ומתה.</p></div>
     </div>
 
     <div class="step"><span class="tag">שכבה 3</span><h3>מעצב כמו סניור (לא רק המסך היפה)</h3>
@@ -315,6 +327,7 @@ claude</code></pre>
       <tr><td><strong>Claude Code / CLI</strong></td><td>הכלי של קלוד בטרמינל (שורת פקודה).</td></tr>
       <tr><td><strong>MCP</strong></td><td>גשר שמחבר את קלוד לכלים חיצוניים (Figma, GitHub).</td></tr>
       <tr><td><strong>Design System</strong></td><td>אוסף הצבעים, הפונטים, המרווחים והקומפוננטות הקבועים של מוצר.</td></tr>
+      <tr><td><strong>Use→Compose→Extend→Invent</strong></td><td>שער ההחלטה: לכל אלמנט — להשתמש בקיים, להרכיב מהקיים, להרחיב, או (מוצא אחרון מסומן) להמציא.</td></tr>
       <tr><td><strong>Tokens</strong></td><td>הערכים הבסיסיים של מערכת העיצוב כמשתנים (צבע ראשי, מרווח, רדיוס).</td></tr>
       <tr><td><strong>DESIGN_CONTEXT.md</strong></td><td>"תעודת הזהות" של המוצר שהסקיל כותב וקורא — הלב של החיסכון וההתאמה.</td></tr>
       <tr><td><strong>States</strong></td><td>כל המצבים של מסך: רגיל, ריק, טעינה, שגיאה, הצלחה.</td></tr>
