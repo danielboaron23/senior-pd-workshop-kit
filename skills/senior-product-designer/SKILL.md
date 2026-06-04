@@ -27,7 +27,7 @@ Run order is always: **Layer 1 (know the product) → Layer 2 (design-system dec
 
 ## This skill is a CONDUCTOR — it composes, it does not duplicate
 
-The unique value here is **product grounding (Layer 1) + the Use→Extend→Invent protocol (Layer 2) + adaptive output**. For the *craft itself*, it does not re-implement design knowledge — it orchestrates best-in-class skills via the **Skill tool**, always gated by `DESIGN_CONTEXT.md`. Invoke them at the moment noted; pass them the product context so their output lands inside *this* product, not in a vacuum.
+The unique value here is **product grounding (Layer 1) + the Use→Compose→Extend→Invent protocol (Layer 2) + adaptive output**. For the *craft itself*, it does not re-implement design knowledge — it orchestrates best-in-class skills via the **Skill tool**, always gated by `DESIGN_CONTEXT.md`. Invoke them at the moment noted; pass them the product context so their output lands inside *this* product, not in a vacuum.
 
 | Job in the pipeline | Skill(s) to invoke | Invoked at |
 |---|---|---|
@@ -103,7 +103,7 @@ This skill is heavier than a naive prompt by design — it loads context and del
 
 ---
 
-## Layer 2 — Design-System Decision Protocol: **Use → Extend → Invent**
+## Layer 2 — Design-System Decision Protocol: **Use → Compose → Extend → Invent**
 
 Every UI element you place passes through this gate, in order. Full detail and annotation rules in **`references/decision-protocol.md`**. When you reach **Extend** or **Invent**, drive the actual spec with the design-system skills — `designer-skills` → `design-systems/component-spec`, `design-token`, `theming-system`, `motion-system`, `naming-convention` — so the new/changed pattern is expressed in the product's own token and naming language, ready to adopt.
 
@@ -176,7 +176,7 @@ The order of authority is always: **product context → accessibility/constraint
 ## Pre-flight (before delivering)
 
 1. Is `DESIGN_CONTEXT.md` loaded/written, and did I state the Context Read?
-2. Is every element classified Reuse / Extend / Invent — with extends & invents flagged?
+2. Is every element classified Reuse / Compose / Extend / Invent — with extends & invents flagged?
 3. Are all relevant states and the surrounding flow covered (not just the default screen)?
 4. Accessibility + responsive/platform met for this product?
 5. Is real, on-voice UX copy in place (no Lorem)?
