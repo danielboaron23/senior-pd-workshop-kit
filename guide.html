@@ -142,6 +142,7 @@
     <div class="anat"><span class="k">Frontmatter</span> — שם הסקיל + תיאור עם מילות-טריגר (design, senior product designer, state, flow, audit…). זה מה שגורם לו להיטען אוטומטית.</div>
     <div class="anat"><span class="k">עקרון העבודה</span> — "המסגרת אוניברסלית, ההקשר אישי". סדר ריצה קבוע: שכבה 1 → 2 → 3.</div>
     <div class="anat"><span class="k">This skill is a CONDUCTOR</span> — מפת ה-delegation: איזה סקיל מפעילים, מתי, ולמה.</div>
+    <div class="anat"><span class="k">Layer 0 — Frame the Problem (אופציונלי)</span> — בדיקת-בטן של הבעיה/JTBD לפני העיצוב; נדלק רק כשמבקשים או כשצריך.</div>
     <div class="anat"><span class="k">Layer 1 — Product Context</span> — מה לסרוק (קוד + Figma), כלל ה-caching, וכתיבת DESIGN_CONTEXT.md.</div>
     <div class="anat"><span class="k">Cost & model selection</span> — איך לשמור שזה זול, ואיזה מודל לכל סוג משימה.</div>
     <div class="anat"><span class="k">Layer 2 — Use→Compose→Extend→Invent</span> — שער ההחלטה לכל אלמנט (עם פוסטורה אדפטיבית).</div>
@@ -165,6 +166,8 @@
     <div class="flow">
       <div class="fstep"><div class="ft">בקשה</div><div class="fd">"עצב את מסך X"</div></div>
       <div class="arr">←</div>
+      <div class="fstep" style="border-style:dashed;border-color:var(--purple)"><div class="ft" style="color:var(--purple)">שכבה 0 · אופ׳</div><div class="fd">מאפיין את הבעיה (אם נדרש)</div></div>
+      <div class="arr">←</div>
       <div class="fstep"><div class="ft">שכבה 1</div><div class="fd">טוען/כותב DESIGN_CONTEXT.md</div></div>
       <div class="arr">←</div>
       <div class="fstep"><div class="ft">שכבה 2</div><div class="fd">Use→Extend→Invent לכל אלמנט</div></div>
@@ -178,7 +181,14 @@
 
   <!-- 6 -->
   <section id="layers">
-    <h2><span class="n">6</span> שלוש השכבות — בפירוט</h2>
+    <h2><span class="n">6</span> השכבות — בפירוט</h2>
+
+    <div class="step" style="border-style:dashed"><span class="tag" style="background:linear-gradient(135deg,#7c3aed,var(--purple))">שכבה 0 · אופציונלי</span><h3>מאפיין את הבעיה (לא רק מעצב)</h3>
+      <p><strong>כבוי כברירת מחדל.</strong> לבקשה ברורה ("עצב את מסך ה-Settings") הוא קופץ ישר לעיצוב — לא חוקר אותך בשאלות. אבל זה מה שמבדיל סניור מג׳וניור: ג׳וניור מבצע את הבריף, <strong>סניור קודם מוודא שזה הבריף הנכון.</strong></p>
+      <p><strong>נדלק כש:</strong> מבקשים מפורשות ("תאפיין את הבעיה", "תאתגר את הבריף", "מה הבעיה האמיתית"), או כשהבקשה מעורפלת/פתרון-תחילה שמריח כמו בעיה לא נכונה.</p>
+      <p><strong>כשהוא דולק — הוא מנסח לבד</strong> (לא חוקר אותך) ב-4 שורות: <strong>הבעיה/JTBD</strong> במשפט, <strong>למי ומתי</strong>, <strong>קריטריון הצלחה</strong> אחד, ו<strong>reframe</strong> אם הפתרון שביקשת כנראה לא יפתור את הבעיה האמיתית. רק אם יש פער אמיתי — שאלה ממוקדת <em>אחת</em>, לא שאלון.</p>
+      <div class="call tip"><span class="ico">🎯</span><p>זה לא שלב discovery כבד — זו בדיקת-בטן קצרה שמוודאת שמעצבים את הדבר הנכון, לפני שמשקיעים בעיצוב המלא.</p></div>
+    </div>
 
     <div class="step"><span class="tag">שכבה 1</span><h3>מכיר את המוצר (אוטומטי, תמיד ראשון)</h3>
       <p>סורק לבד ומחפש את מערכת העיצוב:</p>
@@ -328,6 +338,8 @@ claude</code></pre>
       <tr><td><strong>MCP</strong></td><td>גשר שמחבר את קלוד לכלים חיצוניים (Figma, GitHub).</td></tr>
       <tr><td><strong>Design System</strong></td><td>אוסף הצבעים, הפונטים, המרווחים והקומפוננטות הקבועים של מוצר.</td></tr>
       <tr><td><strong>Use→Compose→Extend→Invent</strong></td><td>שער ההחלטה: לכל אלמנט — להשתמש בקיים, להרכיב מהקיים, להרחיב, או (מוצא אחרון מסומן) להמציא.</td></tr>
+      <tr><td><strong>Layer 0 / אפיון בעיה</strong></td><td>שלב אופציונלי שבו הסקיל ממסגר את הבעיה (JTBD, קריטריון הצלחה) לפני העיצוב — מוודא שעוצבים את הדבר הנכון.</td></tr>
+      <tr><td><strong>JTBD (Job To Be Done)</strong></td><td>"העבודה" שהמשתמש מנסה לבצע — הצורך האמיתי מאחורי הבקשה, לא הפיצ׳ר עצמו.</td></tr>
       <tr><td><strong>Tokens</strong></td><td>הערכים הבסיסיים של מערכת העיצוב כמשתנים (צבע ראשי, מרווח, רדיוס).</td></tr>
       <tr><td><strong>DESIGN_CONTEXT.md</strong></td><td>"תעודת הזהות" של המוצר שהסקיל כותב וקורא — הלב של החיסכון וההתאמה.</td></tr>
       <tr><td><strong>States</strong></td><td>כל המצבים של מסך: רגיל, ריק, טעינה, שגיאה, הצלחה.</td></tr>

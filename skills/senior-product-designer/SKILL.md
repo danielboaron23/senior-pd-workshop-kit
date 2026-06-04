@@ -12,6 +12,8 @@ description: >
   TRIGGER when the user asks to design / redesign / mock / lay out / build a screen, component, flow, empty/loading/error
   state, dashboard, form, or feature; audit a UI as a senior designer; decide "extend a component vs. create a new one";
   or make an interface feel delightful while staying on-brand for their product.
+  Also runs a lightweight, opt-in problem-framing pass (Layer 0) when the user asks to "frame the problem",
+  "challenge the brief", "what's the real problem", or "should we even build this" before designing.
 ---
 
 # Senior Product Designer
@@ -21,7 +23,7 @@ A product-grounded design engine. The difference between this and a generic "mak
 > **The framework is universal. The product context it learns makes it personal.**
 > A senior designer never designs in a vacuum — they absorb the product's reality first, then make every decision *relative to it*. This skill does the same.
 
-Run order is always: **Layer 1 (know the product) → Layer 2 (design-system decision) → Layer 3 (senior execution)**. Never skip Layer 1.
+Run order: **(opt-in) Layer 0 (frame the problem) → Layer 1 (know the product) → Layer 2 (design-system decision) → Layer 3 (senior execution)**. Layer 0 is optional — on only when asked or clearly needed. Layer 1 is never skipped.
 
 ---
 
@@ -43,6 +45,26 @@ The unique value here is **product grounding (Layer 1) + the Use→Compose→Ext
 `/plugin marketplace add Owl-Listener/designer-skills` → `/plugin` → install the plugins you want (start with `design-systems`, `interaction-design`, `visual-critique`).
 
 If a delegated skill isn't installed, degrade gracefully: do the work directly using `references/quality-checklists.md`, and tell the designer which skill would have strengthened the step.
+
+---
+
+## Layer 0 (optional) — Frame the Problem
+
+**Off by default.** For a concrete, well-scoped design request ("design the settings screen"), skip straight to Layer 1 — do **not** interrogate the designer (that principle still holds).
+
+**Turn it on when** the request asks for it or clearly needs it:
+- **Explicit:** "frame the problem", "challenge the brief", "what's the real problem", "should we even build this", "תאפיין את הבעיה", "תאתגר את הבריף".
+- **Implicit:** the ask is vague, strategic, or solution-first in a way that smells like the wrong problem (e.g. "add a dashboard" with no stated user need).
+
+**When on, frame it yourself — don't quiz the designer.** From the Layer 1 product context + the request, state it in ~4 lines:
+- **Problem / JTBD** — the underlying user job in one sentence: *"When `<situation>`, the user wants `<motivation>`, so they can `<outcome>`."*
+- **Who & when** — the user and the trigger moment.
+- **Success signal** — one observable criterion that would say this worked.
+- **Reframe / risk** — if the requested solution likely won't solve the real problem, say so and propose the better framing.
+
+Only if a genuine gap blocks good design, ask **one** focused question — never a questionnaire. Then proceed into Layer 1 → 3.
+
+> This is the senior move: pressure-test the brief *before* executing it. Keep it lightweight — a gut-check, not a discovery phase. A junior executes the brief; a senior first makes sure it's the right brief.
 
 ---
 
@@ -175,6 +197,7 @@ The order of authority is always: **product context → accessibility/constraint
 
 ## Pre-flight (before delivering)
 
+0. If Layer 0 was triggered: did I state the problem/JTBD + success signal (and any reframe) before designing?
 1. Is `DESIGN_CONTEXT.md` loaded/written, and did I state the Context Read?
 2. Is every element classified Reuse / Compose / Extend / Invent — with extends & invents flagged?
 3. Are all relevant states and the surrounding flow covered (not just the default screen)?
