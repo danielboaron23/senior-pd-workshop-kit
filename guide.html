@@ -10,11 +10,17 @@
     --bg:#0b1120; --panel:#0f172a; --card:#111c33; --line:#1e293b;
     --ink:#e2e8f0; --muted:#94a3b8; --soft:#cbd5e1;
     --blue:#38bdf8; --blue2:#0284c7; --good:#22c55e; --warn:#f59e0b; --bad:#ef4444; --purple:#a78bfa;
+    --violet:#8b5cf6; --amber:#fbbf24;
+    --grad:linear-gradient(135deg,var(--blue),var(--violet));
     --radius:16px;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{font-family:'Heebo',sans-serif;background:var(--bg);color:var(--ink);line-height:1.85;font-size:16px}
+  body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:
+      radial-gradient(60% 50% at 80% -5%, rgba(56,189,248,.14), transparent 60%),
+      radial-gradient(55% 45% at 10% 8%, rgba(139,92,246,.13), transparent 60%);}
   a{color:var(--blue);text-decoration:none}
   .wrap{display:grid;grid-template-columns:280px 1fr;max-width:1280px;margin:0 auto}
   nav.side{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;padding:28px 20px;border-left:1px solid var(--line);background:var(--panel)}
@@ -26,13 +32,16 @@
   nav.side a::before{content:counter(s);display:inline-flex;width:20px;height:20px;background:var(--card);border:1px solid var(--line);border-radius:6px;align-items:center;justify-content:center;font-size:11px;color:var(--blue);margin-left:8px;font-weight:700}
   nav.side a:hover{background:var(--card);color:#fff}
   main{padding:0 48px 120px}
-  .hero{padding:60px 0 38px;border-bottom:1px solid var(--line);margin-bottom:36px}
-  .badge{display:inline-block;background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.25);color:var(--blue);padding:6px 16px;border-radius:30px;font-size:12px;font-weight:600;letter-spacing:1px;margin-bottom:22px}
-  h1{font-size:40px;font-weight:900;color:#fff;line-height:1.2;letter-spacing:-.5px}
-  .hero p{color:var(--muted);font-size:18px;margin-top:16px;max-width:660px}
+  .hero{position:relative;padding:72px 0 44px;border-bottom:1px solid var(--line);margin-bottom:36px}
+  .hero::before{content:"";position:absolute;top:-40px;right:-60px;width:320px;height:320px;border-radius:50%;
+    background:radial-gradient(circle,rgba(139,92,246,.22),transparent 65%);filter:blur(20px);pointer-events:none;z-index:-1}
+  .badge{display:inline-block;background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.25);color:var(--blue);padding:6px 16px;border-radius:30px;font-size:12px;font-weight:700;letter-spacing:1px;margin-bottom:22px;background-image:linear-gradient(90deg,rgba(56,189,248,.12),rgba(139,92,246,.12))}
+  h1{font-size:clamp(34px,5.2vw,58px);font-weight:900;color:#fff;line-height:1.12;letter-spacing:-1px}
+  h1 .grad{background:linear-gradient(120deg,var(--blue),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p{color:var(--muted);font-size:18px;margin-top:18px;max-width:680px}
   section{padding:34px 0;border-bottom:1px solid var(--line);scroll-margin-top:20px}
   h2{font-size:27px;font-weight:800;color:#fff;display:flex;align-items:center;gap:14px;margin-bottom:8px}
-  h2 .n{flex-shrink:0;width:40px;height:40px;background:linear-gradient(135deg,var(--blue2),var(--blue));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff}
+  h2 .n{flex-shrink:0;width:44px;height:44px;background:var(--grad);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:800;color:#fff;box-shadow:0 6px 20px -6px rgba(139,92,246,.6)}
   h3{font-size:19px;font-weight:700;color:#fff;margin:26px 0 8px}
   h4{font-size:15px;font-weight:700;color:var(--blue);margin:18px 0 6px}
   p{color:var(--soft);margin:10px 0}
@@ -70,6 +79,35 @@
   .anat{border-right:3px solid var(--blue2);padding-right:16px;margin:14px 0}
   .anat .k{color:#fff;font-weight:700}
   .foot{padding:40px 0 0;color:var(--muted);font-size:13px;text-align:center}
+
+  /* interaction + motion */
+  nav.side a{transition:background .2s ease,color .2s ease,transform .2s ease}
+  nav.side a.active{background:var(--card);color:#fff;box-shadow:inset 3px 0 0 var(--blue)}
+  nav.side a.active::before{border-color:var(--blue);background:rgba(56,189,248,.12)}
+  .card,.step,.flow .fstep{transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+  .card:hover,.step:hover{transform:translateY(-3px);border-color:rgba(56,189,248,.45);box-shadow:0 14px 34px -18px rgba(56,189,248,.55)}
+  .flow .fstep:hover{transform:translateY(-3px);border-color:rgba(56,189,248,.45)}
+  table tr{transition:background .15s ease}
+  tbody tr:hover,table tr:hover{background:rgba(56,189,248,.04)}
+  code{transition:border-color .2s ease,color .2s ease}
+  a:hover code,code:hover{border-color:rgba(56,189,248,.5)}
+
+  /* conductor diagram */
+  .conductor{margin:22px 0;padding:26px 20px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);display:flex;flex-direction:column;align-items:center;gap:0;position:relative;overflow:hidden}
+  .conductor::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 80% at 50% 0%,rgba(139,92,246,.12),transparent 70%);pointer-events:none}
+  .c-hub{position:relative;z-index:1;background:var(--grad);color:#fff;border-radius:14px;padding:14px 26px;font-weight:800;font-size:18px;text-align:center;box-shadow:0 10px 30px -10px rgba(139,92,246,.7)}
+  .c-hub small{display:block;font-weight:600;font-size:11px;opacity:.85;letter-spacing:1px;margin-top:2px;direction:ltr}
+  .c-stem{width:2px;height:26px;background:linear-gradient(var(--violet),transparent);z-index:1}
+  .c-players{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;z-index:1}
+  .c-player{background:#0a1326;border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-size:13px;color:var(--soft);font-weight:600;transition:transform .2s ease,border-color .2s ease,color .2s ease}
+  .c-player:hover{transform:translateY(-2px);border-color:rgba(56,189,248,.5);color:#fff}
+  .c-player code{font-size:12px}
+
+  @media (prefers-reduced-motion: no-preference){
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+    .reveal.in{opacity:1;transform:none}
+  }
+
   @media(max-width:900px){.wrap{grid-template-columns:1fr}nav.side{display:none}main{padding:0 22px 80px}h1{font-size:30px}.grid,.grid3,.flow{grid-template-columns:1fr;flex-direction:column}}
 </style>
 </head>
@@ -97,7 +135,7 @@
 <main>
   <div class="hero" id="top">
     <span class="badge">AI — THE NEXT CHAPTER IN DESIGN</span>
-    <h1>הסקיל "מעצב מוצר סניור" — איך הוא עובד וממה הוא מורכב</h1>
+    <h1>הסקיל <span class="grad">מעצב מוצר סניור</span> — איך הוא עובד וממה הוא מורכב</h1>
     <p>המדריך הזה לא רק אומר מה הסקיל עושה — הוא פותח אותו מבפנים: כל קובץ, כל שכבה, כל החלטה, ולמה בניתי אותו ככה. בדיוק מה שצריך כדי להביא אותו לחברה ולהסביר אותו לעומק.</p>
   </div>
 
@@ -114,6 +152,19 @@
     <p class="lead">רוב סקילי העיצוב הם "נגן בודד" — הם יודעים לעשות דבר אחד (למשל לעצב landing יפה). הסקיל שלנו הוא <strong>מנצח</strong>: הוא לא מנגן הכל לבד, הוא <strong>מנהל סקילים אחרים</strong> ומפעיל כל אחד בזמן הנכון.</p>
     <div class="call tip"><span class="ico">💡</span><p><strong>המשפט שמסכם הכל:</strong> "המסגרת אוניברסלית — ההקשר שהיא לומדת הוא מה שהופך אותה אישית לכל מוצר." אותו סקיל בדיוק, כל חברה.</p></div>
     <p>הערך הייחודי שלו (מה ש<em>רק הוא</em> עושה) הוא 3 דברים: <strong>(1)</strong> לומד את המוצר, <strong>(2)</strong> מחליט נכון לגבי מערכת העיצוב, <strong>(3)</strong> מעצב בכיסוי מלא של סניור. את שאר ה"מלאכה" הוא מאציל לסקילים מומחים.</p>
+
+    <div class="conductor">
+      <div class="c-hub">מנצח התזמורת<small>senior-product-designer</small></div>
+      <div class="c-stem"></div>
+      <div class="c-players">
+        <span class="c-player"><code>ui-ux-pro-max</code> · נכונות</span>
+        <span class="c-player"><code>frontend-design</code> · טעם</span>
+        <span class="c-player"><code>design-systems</code> · טוקנים</span>
+        <span class="c-player"><code>interaction-design</code> · מצבים</span>
+        <span class="c-player"><code>visual-critique</code> · אודיט</span>
+      </div>
+    </div>
+    <p style="text-align:center;color:var(--muted);font-size:14px;margin-top:-2px">המנצח לא מנגן הכל לבד — הוא מפעיל כל נגן בזמן הנכון, ומעביר לו את ההקשר של המוצר.</p>
   </section>
 
   <!-- 3 -->
@@ -351,5 +402,38 @@ claude</code></pre>
   <div class="foot">DesignAI · senior-product-designer · designai.co.il</div>
 </main>
 </div>
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // scroll-reveal — direct children of each section animate in on scroll
+  if(!reduce && 'IntersectionObserver' in window){
+    var els = document.querySelectorAll('main section > *');
+    els.forEach(function(el){ el.classList.add('reveal'); });
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold:0.08, rootMargin:'0px 0px -40px 0px' });
+    els.forEach(function(el){ io.observe(el); });
+  }
+
+  // scroll-spy — highlight the nav link of the section in view
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.side a[href^="#"]'));
+  var map = {};
+  links.forEach(function(a){ var id=a.getAttribute('href').slice(1); var s=document.getElementById(id); if(s) map[id]=a; });
+  if('IntersectionObserver' in window){
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          links.forEach(function(a){ a.classList.remove('active'); });
+          var a = map[e.target.id]; if(a) a.classList.add('active');
+        }
+      });
+    }, { rootMargin:'-45% 0px -50% 0px', threshold:0 });
+    Object.keys(map).forEach(function(id){ spy.observe(document.getElementById(id)); });
+  }
+})();
+</script>
 </body>
 </html>
